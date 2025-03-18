@@ -1,14 +1,39 @@
 // Import the Express library
 const express = require("express");
 // Imports for our new routers
+const helmet = require("helmet");
+const morgan = require("morgan");
+const cors = require("cors");
+const rateLimit = require("express-rate-limit");
 const usersRouter = require("./routers/usersRouter");
 const lightningRouter = require("./routers/lightningRouter");
 
 
+
 // Create a new instance of the Express server
 const server = express()
+
+// Use helmet middleware for security
+server.use(helmet());
+
+// Use morgan middleware for logging using the 'common' logging format
+server.use(morgan("common"));
+
+// Use cors middleware to enable cross-origin requests
+server.use(cors());
+
+
 // Use the built-in JSON middleware to parse incoming JSON requests
 server.use(express.json())
+
+// Use rate limiting middleware to limit the number of requests from a single IP
+server.use(
+    rateLimit({
+      windowMs: 15 * 60 * 1000, // 15 minutes
+      max: 100, // limit each IP to 100 requests per windowMs
+    })
+   );
+   
 
 // Set up a route to handle GET requests to the root path
 server.get("/", (req, res) => {
