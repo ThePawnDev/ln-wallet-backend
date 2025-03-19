@@ -9,7 +9,6 @@ const usersRouter = require("./routers/usersRouter");
 const lightningRouter = require("./routers/lightningRouter");
 
 
-
 // Create a new instance of the Express server
 const server = express()
 
