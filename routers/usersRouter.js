@@ -68,7 +68,7 @@ function generateToken(user) {
    
     // Generate and return the JWT using the payload, secret, and options
     return jwt.sign(payload, secret, options);
-}
+} 
    
 // export our router so we can initiate it in index.js
 module.exports = router;
