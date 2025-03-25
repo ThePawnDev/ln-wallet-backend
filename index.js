@@ -1,6 +1,6 @@
 // Import the Express library
 const express = require("express");
-// Imports for our new routers
+const dotenv = require("dotenv")
 const helmet = require("helmet");
 const morgan = require("morgan");
 const cors = require("cors");
@@ -8,6 +8,7 @@ const rateLimit = require("express-rate-limit");
 const usersRouter = require("./routers/usersRouter");
 const lightningRouter = require("./routers/lightningRouter");
 
+dotenv.config()
 
 // Create a new instance of the Express server
 const server = express()
